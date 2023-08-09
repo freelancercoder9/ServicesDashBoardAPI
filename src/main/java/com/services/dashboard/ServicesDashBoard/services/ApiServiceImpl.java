@@ -13,16 +13,15 @@ public class ApiServiceImpl implements ApiService{
     private ApiDetailsRepository apiDetailsRepository;
 
     @Override
-    public String save(ApiDetails apiDetails) {
-        System.out.println("Details : "+apiDetails.toString());
-        ApiDetails apiDetailsOutput = apiDetailsRepository.save(apiDetails);
-        return apiDetailsOutput.getApiID();
+    public Long save(ApiDetails apiDetails) {
+        ApiDetails savedData = apiDetailsRepository.saveAndFlush(apiDetails);
+        return savedData.getId();
     }
 
     @Override
     public List<ApiDetails> getAllApiDetails() {
-
-        return apiDetailsRepository.findAll();
-
+        return (List<ApiDetails>) apiDetailsRepository.findAll();
     }
+
+
 }

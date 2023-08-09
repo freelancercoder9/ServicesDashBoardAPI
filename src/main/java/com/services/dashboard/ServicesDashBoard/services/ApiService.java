@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ApiService {
 
-    String save(ApiDetails apiDetails);
+    Long save(ApiDetails apiDetails);
     List<ApiDetails> getAllApiDetails();
 }
