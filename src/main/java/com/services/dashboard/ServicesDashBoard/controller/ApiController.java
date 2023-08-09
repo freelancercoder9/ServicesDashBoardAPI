@@ -7,12 +7,14 @@ import com.services.dashboard.ServicesDashBoard.services.AppInstanceService;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("/apiDetails")
 @RestController
+@CrossOrigin
 public class ApiController {
 
     @Autowired

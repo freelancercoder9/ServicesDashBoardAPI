@@ -27,8 +27,8 @@ public class ApiDetails {
     private String apiRequestType;
     private Long totalTPS;
     private Status devStatus;
-    private String developerName;
     private Date devCompletedDate;
+    private String developerName;
     private Status uatStatus;
     private Date uatCompletedDate;
     private Status prodStatus;
