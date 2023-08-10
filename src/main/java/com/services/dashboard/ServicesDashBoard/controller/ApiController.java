@@ -8,6 +8,7 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RequestMapping("/apiDetails")
 @RestController
 @CrossOrigin
+
 public class ApiController {
 
     @Autowired

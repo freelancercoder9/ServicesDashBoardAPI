@@ -11,4 +11,6 @@ public interface AppInstanceService {
     Optional<AppInstanceDetails> findByAppInstanceID(Long apiInstanceId);
 
     List<AppInstanceDetails> findAllAppInstances();
+
+    AppInstanceDetails createAppInstance(AppInstanceDetails appInstanceDetails);
 }

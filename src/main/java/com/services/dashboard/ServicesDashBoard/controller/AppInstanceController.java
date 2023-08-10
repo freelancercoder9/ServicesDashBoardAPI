@@ -3,16 +3,15 @@ package com.services.dashboard.ServicesDashBoard.controller;
 import com.services.dashboard.ServicesDashBoard.model.AppInstanceDetails;
 import com.services.dashboard.ServicesDashBoard.services.AppInstanceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.List;
 
 @RequestMapping("/appInstanceDetails")
 @RestController
 @CrossOrigin
+
 public class AppInstanceController {
 
     @Autowired
@@ -21,5 +20,10 @@ public class AppInstanceController {
     @GetMapping("/getAllAppNames")
     public List<AppInstanceDetails> getAppInstanceDetails(){
         return appInstanceService.findAllAppInstances();
+    }
+
+    @PostMapping("/createAppInstance")
+    public AppInstanceDetails createAppInstance( @RequestBody AppInstanceDetails appInstanceDetails){
+            return appInstanceService.createAppInstance(appInstanceDetails);
     }
 }

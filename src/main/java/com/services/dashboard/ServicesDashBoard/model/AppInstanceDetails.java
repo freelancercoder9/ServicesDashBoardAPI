@@ -28,6 +28,4 @@ public class AppInstanceDetails {
     private String prodDeployedEnv;
     private Date lastProdDeployedDate;
 
-
-
 }

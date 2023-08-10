@@ -24,4 +24,12 @@ public class AppInstanceServiceImpl implements  AppInstanceService{
         List<AppInstanceDetails> allAppNames = appInstanceDetailsRepository.findAll();
         return allAppNames;
     }
+
+    @Override
+    public AppInstanceDetails createAppInstance(AppInstanceDetails appInstanceDetails) {
+
+        AppInstanceDetails save = appInstanceDetailsRepository.save(appInstanceDetails);
+        return save;
+
+    }
 }
