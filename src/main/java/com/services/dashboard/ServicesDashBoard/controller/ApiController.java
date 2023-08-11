@@ -4,11 +4,8 @@ import com.services.dashboard.ServicesDashBoard.model.ApiDetails;
 import com.services.dashboard.ServicesDashBoard.model.AppInstanceDetails;
 import com.services.dashboard.ServicesDashBoard.services.ApiService;
 import com.services.dashboard.ServicesDashBoard.services.AppInstanceService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,21 +23,22 @@ public class ApiController {
     private AppInstanceService appInstanceService;
 
     @PostMapping("/{apiInstanceId}/createApi")
-    public Long createApiDetails( @PathVariable(value = "apiInstanceId") Long apiInstanceId, @RequestBody ApiDetails apiDetails) throws Exception {
+    public Long createApiDetails(@PathVariable(value = "apiInstanceId") Long apiInstanceId, @RequestBody ApiDetails apiDetails) throws Exception {
+        System.out.println("Data is " + apiInstanceId + apiDetails);
         Optional<AppInstanceDetails> byAppInstanceID = appInstanceService.findByAppInstanceID(apiInstanceId);
-        if(byAppInstanceID.isPresent()){
+        if (byAppInstanceID.isPresent()) {
             apiDetails.setAppInstanceDetails(byAppInstanceID.get());
             Long apiId = apiService.save(apiDetails);
-            System.out.println("value is " +apiId);
+            System.out.println("value is " + apiId);
             return apiId;
-        }else {
+        } else {
             throw new Exception("APP Instance details not found");
 
         }
     }
 
     @GetMapping("/getAllApiDetails")
-    public List<ApiDetails> getAllApiDetailsList(){
+    public List<ApiDetails> getAllApiDetailsList() {
         return apiService.getAllApiDetails();
     }
 }

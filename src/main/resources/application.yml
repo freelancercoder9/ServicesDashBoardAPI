@@ -21,6 +21,7 @@ spring:
     banner-mode: 'off'
   jpa:
     show-sql: true
+    open-in-view: false
     properties:
       hibernate:
         jdbc:

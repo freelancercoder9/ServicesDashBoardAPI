@@ -2,11 +2,11 @@ package com.services.dashboard.ServicesDashBoard.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.NotFound;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
-
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,9 +20,10 @@ public class ApiDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(name = "API_NAME", nullable = false, unique = true)
     private String apiName;
-    @ManyToOne
-    @JoinColumn(name = "APP_INSTANCE_NAME", referencedColumnName = "APP_INSTANCE_NAME", nullable = false )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "APP_INSTANCE_NAME", referencedColumnName = "APP_INSTANCE_NAME", nullable = false)
     private AppInstanceDetails appInstanceDetails;
     private String apiRequestType;
     private Long totalTPS;
