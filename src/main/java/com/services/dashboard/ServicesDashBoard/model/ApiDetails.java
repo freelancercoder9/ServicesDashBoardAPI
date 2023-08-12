@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -15,15 +16,15 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ApiDetails {
+public class ApiDetails implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "API_NAME", nullable = false, unique = true)
     private String apiName;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "APP_INSTANCE_NAME", referencedColumnName = "APP_INSTANCE_NAME", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "APP_INSTANCE_ID", referencedColumnName = "id", nullable = false)
     private AppInstanceDetails appInstanceDetails;
     private String apiRequestType;
     private Long totalTPS;

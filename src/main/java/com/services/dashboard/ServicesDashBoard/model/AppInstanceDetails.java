@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AppInstanceDetails {
+public class AppInstanceDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
