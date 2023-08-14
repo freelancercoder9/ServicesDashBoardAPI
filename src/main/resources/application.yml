@@ -1,13 +1,38 @@
 #'#docker run -d --name mongodb -e MONGO_INITDB_ROOT_USERNAME': admin -e MONGO_INITDB_ROOT_PASSWORD
+#spring:
+#  data:
+#    mongodb:
+#      authentication-database: GlobalAPIDB
+#      username: uatuser
+#      password: uatuser
+#      database: GlobalAPIDB
+#      port: '27017'
+#      host: localhost
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ANT_PATH_MATCHER
+
 spring:
-  data:
-    mongodb:
-      authentication-database: GlobalAPIDB
-      username: uatuser
-      password: uatuser
-      database: GlobalAPIDB
-      port: '27017'
-      host: localhost
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: mysecretpassword
+  main:
+    banner-mode: 'off'
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: 'true'
+    hibernate:
+      ddl-auto: update
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+logging:
+  level:
+    org:
+      springframework: INFO

@@ -1,23 +1,38 @@
 package com.services.dashboard.ServicesDashBoard.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Generated;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Builder
-@Document(collection = "API_DETAILS")
+import java.io.Serializable;
+import java.util.Date;
+
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ApiDetails {
-
+@Entity
+@Table(name = "API_DETAILS")
+@NoArgsConstructor
+@Getter
+@Setter
+public class ApiDetails implements Serializable {
     @Id
-    private String apiID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @Column(name = "API_NAME", nullable = false, unique = true)
     private String apiName;
+    @ManyToOne()
+    @JoinColumn(name = "APP_INSTANCE_ID", referencedColumnName = "id", nullable = false)
+    private AppInstanceDetails appInstanceDetails;
     private String apiRequestType;
-    private Long totalTps;
-    private ApiStatus uatStatus;
-    private ApiStatus prodStatus;
+    private Long totalTPS;
+    private Status devStatus;
+    private Date devCompletedDate;
+    private String developerName;
+    private Status uatStatus;
+    private Date uatCompletedDate;
+    private Status prodStatus;
+    private Date prodCompletedDate;
 }
