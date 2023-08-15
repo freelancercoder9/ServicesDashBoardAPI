@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -12,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class ConsumerDetails {
 
     @Id
@@ -21,5 +23,7 @@ public class ConsumerDetails {
     @Column(name = "APP_CODE", unique = true)
     private String appCode;
     private String primaryOwner;
+    private String primaryOwnerEmail;
     private String secondaryOwner;
+    private String secondaryOwnerEmail;
 }

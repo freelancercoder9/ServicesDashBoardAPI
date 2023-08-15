@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 
@@ -14,19 +15,20 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class ConsumerClientApiDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "APP_CODE", referencedColumnName = "APP_CODE", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "CONSUMER_DETAILS_ID", referencedColumnName = "id", nullable = false)
     private ConsumerDetails consumerDetails;
     private String clientId;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "API_NAME", referencedColumnName = "API_NAME", nullable = false)
-    private ApiDetails apiName;
+    @ManyToOne
+    @JoinColumn(name = "API_NAME_ID", referencedColumnName = "id", nullable = false)
+    private ApiDetails apiDetails;
     private String contactName;
     private String uatStatus;
     private Date uatStatusDate;

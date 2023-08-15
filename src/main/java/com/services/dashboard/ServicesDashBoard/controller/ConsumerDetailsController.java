@@ -15,7 +15,7 @@ public class ConsumerDetailsController {
     @Autowired
     ConsumerDetailsService consumerDetailsService;
 
-    @GetMapping("/getAllApiDetails")
+    @GetMapping("/getAllConsumers")
     public List<ConsumerDetails> getAllApiDetailsList() {
         return consumerDetailsService.getAllConsumerList();
     }
