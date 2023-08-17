@@ -28,6 +28,11 @@
 
 
 spring:
+  error:
+  include-message: always
+  include-binding-errors: always
+  include-stacktrace: false
+  include-exception: false
   datasource:
     username: dbuser
     url: jdbc:postgresql://dpg-cjd2u1rbq8nc7381t8gg-a.singapore-postgres.render.com/api_utility

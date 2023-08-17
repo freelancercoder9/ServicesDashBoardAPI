@@ -24,4 +24,10 @@ public class ConsumerClientServiceImpl implements ConsumerClientService {
         ConsumerClientApiDetails saveData = consumerClientRepository.save(consumerClientApiDetails);
         return saveData;
     }
+
+    @Override
+    public List<ConsumerClientApiDetails> validateExistingClientAPIMapping(String clientId, Long apiID, Long consumerId) {
+        List<ConsumerClientApiDetails> existingClientAPiDetails = consumerClientRepository.findExistingClientAPiDetails(clientId, apiID, consumerId);
+        return existingClientAPiDetails;
+    }
 }

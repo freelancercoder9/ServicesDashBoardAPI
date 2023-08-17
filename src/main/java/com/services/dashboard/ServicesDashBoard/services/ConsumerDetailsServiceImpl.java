@@ -4,7 +4,6 @@ import com.services.dashboard.ServicesDashBoard.model.ConsumerDetails;
 import com.services.dashboard.ServicesDashBoard.repository.ConsumerDetailsRepository;
 import com.services.dashboard.ServicesDashBoard.util.ErrorDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class ConsumerDetailsServiceImpl implements ConsumerDetailsService {
     public Optional<ConsumerDetails> findByConsumerID(Long consumerDetailsID) {
         Optional<ConsumerDetails> byId = consumerDetailsRepository.findById(consumerDetailsID);
         if (byId.isEmpty()) {
-            throw new ErrorDetails("API_CONSUMER_DETAILS_ERROR_100", "consumer details not found", HttpStatus.NOT_FOUND);
+            throw new ErrorDetails("API_CONSUMER_DETAILS_ERROR_100", "consumer details not found");
         } else {
             return byId;
         }
