@@ -29,12 +29,12 @@ public class ApiDetails implements Serializable {
     @JoinColumn(name = "APP_INSTANCE_ID", referencedColumnName = "id", nullable = false)
     private AppInstanceDetails appInstanceDetails;
     private String apiRequestType;
-    private Long totalTPS;
-    private Status devStatus;
-    private Date devCompletedDate;
+    private Long totalTps;
     private String developerName;
+    private Status devStatus;
+    private Date devStatusDate;
     private Status uatStatus;
-    private Date uatCompletedDate;
+    private Date uatStatusDate;
     private Status prodStatus;
-    private Date prodCompletedDate;
+    private Date prodStatusDate;
 }

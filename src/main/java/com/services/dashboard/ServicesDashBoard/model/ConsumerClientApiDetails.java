@@ -33,6 +33,6 @@ public class ConsumerClientApiDetails {
     private String uatStatus;
     private Date uatStatusDate;
     private String prodStatus;
-    private String prodStatusDate;
+    private Date prodStatusDate;
     private Long tpsValue;
 }

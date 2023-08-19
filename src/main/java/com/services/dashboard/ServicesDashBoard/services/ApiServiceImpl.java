@@ -36,5 +36,11 @@ public class ApiServiceImpl implements ApiService {
         return byId;
     }
 
+    @Override
+    public List<ApiDetails> getAllApiDetailsWithTps() {
+        List<ApiDetails> allApiDetailsWithTpsValue = apiDetailsRepository.getAllApiDetailsWithTpsValue();
+        return allApiDetailsWithTpsValue;
+    }
+
 
 }

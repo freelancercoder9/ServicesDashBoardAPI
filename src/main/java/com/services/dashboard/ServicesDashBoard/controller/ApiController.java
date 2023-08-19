@@ -41,4 +41,10 @@ public class ApiController {
     public List<ApiDetails> getAllApiDetailsList() {
         return apiService.getAllApiDetails();
     }
+
+
+    @GetMapping("/getAllApiDetailsList")
+    public List<ApiDetails> getAllApiDetailsWithTps() {
+        return apiService.getAllApiDetailsWithTps();
+    }
 }

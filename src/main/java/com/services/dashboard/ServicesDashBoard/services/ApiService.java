@@ -12,4 +12,6 @@ public interface ApiService {
     List<ApiDetails> getAllApiDetails();
 
     Optional<ApiDetails> getApiDetailsById(Long apiId);
+
+    List<ApiDetails> getAllApiDetailsWithTps();
 }
