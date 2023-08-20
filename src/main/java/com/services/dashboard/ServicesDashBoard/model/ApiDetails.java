@@ -30,7 +30,9 @@ public class ApiDetails implements Serializable {
     private AppInstanceDetails appInstanceDetails;
     private String apiRequestType;
     private Long totalTps;
-    private String developerName;
+    @ManyToOne()
+    @JoinColumn(name = "DEVELOPER_NAME", referencedColumnName = "id", nullable = false)
+    private TeamMember developerName;
     private Status devStatus;
     private Date devStatusDate;
     private Status uatStatus;
