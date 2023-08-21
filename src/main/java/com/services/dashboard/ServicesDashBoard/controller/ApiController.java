@@ -35,7 +35,7 @@ public class ApiController {
             Optional<TeamMember> teamMemberById = teamMemberService.findTeamMemberById(memberId);
             if (teamMemberById.isPresent()) {
                 apiDetails.setAppInstanceDetails(byAppInstanceID.get());
-                apiDetails.setDeveloperName(teamMemberById.get());
+                apiDetails.setDeveloperDetails(teamMemberById.get());
                 Long apiId = apiService.save(apiDetails);
                 System.out.println("value is " + apiId);
                 return apiId;

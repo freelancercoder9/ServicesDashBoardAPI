@@ -22,6 +22,7 @@ public class TeamMember {
     private Long id;
     @Column(name = "MEMBER_NAME", unique = true)
     private String memberName;
+    private MemberRole memberRole;
     private LocationName locationName;
     private String contactNumber;
 }
