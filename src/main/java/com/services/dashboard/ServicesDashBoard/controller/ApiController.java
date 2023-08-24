@@ -2,11 +2,17 @@ package com.services.dashboard.ServicesDashBoard.controller;
 
 import com.services.dashboard.ServicesDashBoard.model.ApiDetails;
 import com.services.dashboard.ServicesDashBoard.model.AppInstanceDetails;
+import com.services.dashboard.ServicesDashBoard.model.ConsumerClientApiDetails;
 import com.services.dashboard.ServicesDashBoard.model.TeamMember;
 import com.services.dashboard.ServicesDashBoard.services.ApiService;
 import com.services.dashboard.ServicesDashBoard.services.AppInstanceService;
+import com.services.dashboard.ServicesDashBoard.services.ConsumerClientService;
 import com.services.dashboard.ServicesDashBoard.services.TeamMemberService;
+import com.services.dashboard.ServicesDashBoard.util.ErrorDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +21,7 @@ import java.util.Optional;
 @RequestMapping("/apiDetails")
 @RestController
 @CrossOrigin
-
+@Slf4j
 public class ApiController {
 
     @Autowired
@@ -27,25 +33,27 @@ public class ApiController {
     @Autowired
     private TeamMemberService teamMemberService;
 
+    @Autowired
+    private ConsumerClientService consumerClientService;
+
     @PostMapping("/{apiInstanceId}/{memberId}/createApi")
-    public Long createApiDetails(@PathVariable(value = "apiInstanceId") Long apiInstanceId, @PathVariable(value = "memberId") Long memberId, @RequestBody ApiDetails apiDetails) throws Exception {
-        System.out.println("Data is " + apiInstanceId + apiDetails);
+    public ResponseEntity createApiDetails(@PathVariable(value = "apiInstanceId") Long apiInstanceId, @PathVariable(value = "memberId") Long memberId, @RequestBody ApiDetails apiDetails) throws Exception {
+
+        log.info("createApiDetails...", apiInstanceId, apiDetails);
+
         Optional<AppInstanceDetails> byAppInstanceID = appInstanceService.findByAppInstanceID(apiInstanceId);
         if (byAppInstanceID.isPresent()) {
             Optional<TeamMember> teamMemberById = teamMemberService.findTeamMemberById(memberId);
             if (teamMemberById.isPresent()) {
                 apiDetails.setAppInstanceDetails(byAppInstanceID.get());
                 apiDetails.setDeveloperDetails(teamMemberById.get());
-                Long apiId = apiService.save(apiDetails);
-                System.out.println("value is " + apiId);
-                return apiId;
+                ApiDetails save = apiService.save(apiDetails);
+                return new ResponseEntity(save, HttpStatus.OK);
             } else {
-                throw new Exception("Team Member not found");
+                return new ResponseEntity(new ErrorDetails("API_SERVICE_ERROR", "Please select valid member"), HttpStatus.BAD_REQUEST);
             }
-
         } else {
-            throw new Exception("APP Instance details not found");
-
+            return new ResponseEntity(new ErrorDetails("API_SERVICE_ERROR", "Please select valid app instance"), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -58,5 +66,16 @@ public class ApiController {
     @GetMapping("/getAllApiDetailsList")
     public List<ApiDetails> getAllApiDetailsWithTps() {
         return apiService.getAllApiDetailsWithTps();
+    }
+
+    @DeleteMapping("/deleteApiDetails/{apiId}")
+    public ResponseEntity deleteApiDetails(@PathVariable Long apiId) {
+        List<ConsumerClientApiDetails> allConsumerClientDetailsWithApiID = consumerClientService.getAllConsumerClientDetailsWithApiID(apiId);
+        if (allConsumerClientDetailsWithApiID != null && allConsumerClientDetailsWithApiID.size() > 0) {
+            return new ResponseEntity(new ErrorDetails("API_SERVICE_ERROR", "Cannot Delete api, there are consumers for this api"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        apiService.deleteAPiDetails(apiId);
+
+        return new ResponseEntity("API Deleted SuccessFully", HttpStatus.OK);
     }
 }

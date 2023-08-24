@@ -57,18 +57,17 @@ public class ConsumerClientController {
                     }
                 }
                 ConsumerClientApiDetails consumerClientApiDetailsReturn = consumerClientService.saveConsumerClientApiDetails(consumerClientApiDetails);
-
                 return new ResponseEntity(consumerClientApiDetailsReturn, HttpStatus.OK);
-
             } else {
-
                 return new ResponseEntity(new ErrorDetails("API_CLIENT_MAPPING_101", "Please provide valid API name"), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
-
             return new ResponseEntity(new ErrorDetails("API_CLIENT_MAPPING_102", "Please provide valid APP Code"), HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
+    }
 
+    @DeleteMapping("/deleteConsumerClientDetails/{consumerClientId}")
+    public void deleteConsumerClientId(Long consumerClientId) {
+        consumerClientService.deleteConsumerClientDetails(consumerClientId);
     }
 }

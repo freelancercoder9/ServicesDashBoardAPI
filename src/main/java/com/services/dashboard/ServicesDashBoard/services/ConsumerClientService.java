@@ -11,4 +11,10 @@ public interface ConsumerClientService {
     ConsumerClientApiDetails saveConsumerClientApiDetails(ConsumerClientApiDetails consumerClientApiDetails);
 
     List<ConsumerClientApiDetails> validateExistingClientAPIMapping(String clientId, Long apiID, Long consumerId);
+
+    void deleteConsumerClientDetails(Long consumerClientId);
+
+    List<ConsumerClientApiDetails> getAllConsumerClientDetailsWithApiID(Long apiId);
+
+    List<ConsumerClientApiDetails> getAllConsumerClientDetailsWithConsumerID(Long consumerId);
 }

@@ -11,4 +11,6 @@ public interface TeamMemberService {
     Optional<TeamMember> findTeamMemberById(Long teamMemberId);
 
     List<TeamMember> getAllTeamMembers();
+
+    void deleteMemberDetails(Long memberId);
 }

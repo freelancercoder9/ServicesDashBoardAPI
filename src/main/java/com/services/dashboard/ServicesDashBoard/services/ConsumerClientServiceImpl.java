@@ -30,4 +30,21 @@ public class ConsumerClientServiceImpl implements ConsumerClientService {
         List<ConsumerClientApiDetails> existingClientAPiDetails = consumerClientRepository.findExistingClientAPiDetails(clientId, apiID, consumerId);
         return existingClientAPiDetails;
     }
+
+    @Override
+    public void deleteConsumerClientDetails(Long consumerClientId) {
+        consumerClientRepository.deleteById(consumerClientId);
+    }
+
+    @Override
+    public List<ConsumerClientApiDetails> getAllConsumerClientDetailsWithApiID(Long apiId) {
+        List<ConsumerClientApiDetails> allConsumerClientDetailsWithApiId = consumerClientRepository.findAllConsumerClientDetailsWithApiId(apiId);
+        return allConsumerClientDetailsWithApiId;
+    }
+
+    @Override
+    public List<ConsumerClientApiDetails> getAllConsumerClientDetailsWithConsumerID(Long consumerId) {
+        List<ConsumerClientApiDetails> allConsumerClientDetailsWithConsumerID = consumerClientRepository.findAllConsumerClientDetailsWithConsumerID(consumerId);
+        return allConsumerClientDetailsWithConsumerID;
+    }
 }

@@ -16,10 +16,10 @@ public class ApiServiceImpl implements ApiService {
     private ApiDetailsRepository apiDetailsRepository;
 
     @Override
-    public Long save(ApiDetails apiDetails) {
+    public ApiDetails save(ApiDetails apiDetails) {
         try {
             ApiDetails savedData = apiDetailsRepository.saveAndFlush(apiDetails);
-            return savedData.getId();
+            return savedData;
         } catch (Exception e) {
             throw new ErrorDetails("API_SERVICE_ERROR_100", "Failed to save Api details");
         }
@@ -42,5 +42,18 @@ public class ApiServiceImpl implements ApiService {
         return allApiDetailsWithTpsValue;
     }
 
+    @Override
+    public void deleteAPiDetails(Long apiId) {
+        apiDetailsRepository.deleteById(apiId);
+    }
 
+    @Override
+    public List<ApiDetails> getAllApiDetailsWithAppInstanceId(Long appInstanceId) {
+        return apiDetailsRepository.getAllApiDetailsWithInstanceId(appInstanceId);
+    }
+
+    @Override
+    public List<ApiDetails> getAllApiDetailsWithTeamMemberId(Long teamMemberId) {
+        return apiDetailsRepository.getAllApiDetailsWithTeamMemberId(teamMemberId);
+    }
 }

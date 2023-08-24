@@ -7,11 +7,17 @@ import java.util.Optional;
 
 public interface ApiService {
 
-    Long save(ApiDetails apiDetails);
+    ApiDetails save(ApiDetails apiDetails);
 
     List<ApiDetails> getAllApiDetails();
 
     Optional<ApiDetails> getApiDetailsById(Long apiId);
 
     List<ApiDetails> getAllApiDetailsWithTps();
+
+    void deleteAPiDetails(Long apiId);
+
+    List<ApiDetails> getAllApiDetailsWithAppInstanceId(Long appInstanceId);
+
+    List<ApiDetails> getAllApiDetailsWithTeamMemberId(Long teamMemberId);
 }

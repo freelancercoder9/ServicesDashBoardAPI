@@ -40,4 +40,9 @@ public class AppInstanceServiceImpl implements AppInstanceService {
             throw new ErrorDetails("API_INSTANCE_ERROR_200", "Failed to save App instance Details");
         }
     }
+
+    @Override
+    public void deleteAppInstanceDetails(Long appInstanceId) {
+        appInstanceDetailsRepository.deleteById(appInstanceId);
+    }
 }

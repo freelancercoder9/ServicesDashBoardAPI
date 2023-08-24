@@ -12,4 +12,10 @@ public interface ApiDetailsRepository extends JpaRepository<ApiDetails, Long> {
             "sum(ccad.tps_value)  as total_tps from api_details ad, consumer_client_api_details ccad  \n" +
             "where ad.id = ccad.api_name_id  group  by ad.id ", nativeQuery = true)
     List<ApiDetails> getAllApiDetailsWithTpsValue();
+
+    @Query(value = "SELECT * FROM api_details i WHERE i.app_instance_id = ?1", nativeQuery = true)
+    List<ApiDetails> getAllApiDetailsWithInstanceId(Long appInstanceId);
+
+    @Query(value = "select * from api_details ad2  where  ad2.developer_details = ?1", nativeQuery = true)
+    List<ApiDetails> getAllApiDetailsWithTeamMemberId(Long teamMemberId);
 }

@@ -35,5 +35,10 @@ public class ConsumerDetailsServiceImpl implements ConsumerDetailsService {
         return consumerDetailsRepository.save(consumerDetails);
     }
 
+    @Override
+    public void deleteConsumerDetails(Long consumerId) {
+        consumerDetailsRepository.deleteById(consumerId);
+    }
+
 
 }

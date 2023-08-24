@@ -11,4 +11,6 @@ public interface ConsumerDetailsService {
     List<ConsumerDetails> getAllConsumerList();
 
     ConsumerDetails save(ConsumerDetails consumerDetails);
+
+    void deleteConsumerDetails(Long consumerId);
 }

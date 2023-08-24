@@ -13,4 +13,6 @@ public interface AppInstanceService {
     List<AppInstanceDetails> findAllAppInstances();
 
     AppInstanceDetails createAppInstance(AppInstanceDetails appInstanceDetails);
+
+    void deleteAppInstanceDetails(Long appInstanceId);
 }

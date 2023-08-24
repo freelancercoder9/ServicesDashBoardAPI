@@ -31,4 +31,9 @@ public class TeamMemberServiceImpl implements TeamMemberService {
         List<TeamMember> all = teamMemberRepository.findAll();
         return all;
     }
+
+    @Override
+    public void deleteMemberDetails(Long memberId) {
+        teamMemberRepository.deleteById(memberId);
+    }
 }
