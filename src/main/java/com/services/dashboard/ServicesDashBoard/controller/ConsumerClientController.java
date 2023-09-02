@@ -69,8 +69,10 @@ public class ConsumerClientController {
     }
 
     @DeleteMapping("/deleteConsumerClientDetails/{consumerClientId}")
-    public void deleteConsumerClientId(@PathVariable Long consumerClientId) {
+    public ResponseEntity deleteConsumerClientId(@PathVariable Long consumerClientId) {
         log.info("deleteConsumerClientId Request is : {}", consumerClientId);
         consumerClientService.deleteConsumerClientDetails(consumerClientId);
+
+        return new ResponseEntity("API Deleted SuccessFully", HttpStatus.OK);
     }
 }
