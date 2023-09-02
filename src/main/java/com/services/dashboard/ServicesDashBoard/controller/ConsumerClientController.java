@@ -7,6 +7,7 @@ import com.services.dashboard.ServicesDashBoard.services.ApiService;
 import com.services.dashboard.ServicesDashBoard.services.ConsumerClientService;
 import com.services.dashboard.ServicesDashBoard.services.ConsumerDetailsService;
 import com.services.dashboard.ServicesDashBoard.util.ErrorDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequestMapping("/ConsumerClient")
 @RestController
 @CrossOrigin
+@Slf4j
 public class ConsumerClientController {
 
     @Autowired
@@ -67,7 +69,8 @@ public class ConsumerClientController {
     }
 
     @DeleteMapping("/deleteConsumerClientDetails/{consumerClientId}")
-    public void deleteConsumerClientId(Long consumerClientId) {
+    public void deleteConsumerClientId(@PathVariable Long consumerClientId) {
+        log.info("deleteConsumerClientId Request is : {}", consumerClientId);
         consumerClientService.deleteConsumerClientDetails(consumerClientId);
     }
 }
