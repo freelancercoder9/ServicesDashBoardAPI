@@ -64,8 +64,11 @@ public class ApiController {
 
 
     @GetMapping("/getAllApiDetailsList")
-    public List<ApiDetails> getAllApiDetailsWithTps() {
-        return apiService.getAllApiDetailsWithTps();
+    public ResponseEntity getAllApiDetailsWithTps() {
+        List<ApiDetails> allApiDetailsWithTps = apiService.getAllApiDetailsWithTps();
+        log.info("In controller getAllApiDetailsWithTps {}", allApiDetailsWithTps);
+        return new ResponseEntity(allApiDetailsWithTps, HttpStatus.OK);
+
     }
 
     @DeleteMapping("/deleteApiDetails/{apiId}")

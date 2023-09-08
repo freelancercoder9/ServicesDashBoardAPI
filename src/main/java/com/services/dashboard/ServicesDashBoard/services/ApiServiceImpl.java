@@ -3,6 +3,7 @@ package com.services.dashboard.ServicesDashBoard.services;
 import com.services.dashboard.ServicesDashBoard.model.ApiDetails;
 import com.services.dashboard.ServicesDashBoard.repository.ApiDetailsRepository;
 import com.services.dashboard.ServicesDashBoard.util.ErrorDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class ApiServiceImpl implements ApiService {
 
     @Autowired
@@ -39,6 +41,7 @@ public class ApiServiceImpl implements ApiService {
     @Override
     public List<ApiDetails> getAllApiDetailsWithTps() {
         List<ApiDetails> allApiDetailsWithTpsValue = apiDetailsRepository.getAllApiDetailsWithTpsValue();
+        log.info("allApiDetailsWithTpsValue {}", allApiDetailsWithTpsValue);
         return allApiDetailsWithTpsValue;
     }
 
