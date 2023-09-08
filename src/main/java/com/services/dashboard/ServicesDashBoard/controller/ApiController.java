@@ -78,4 +78,28 @@ public class ApiController {
 
         return new ResponseEntity("API Deleted SuccessFully", HttpStatus.OK);
     }
+
+    @GetMapping("/getAllApiDetails/appInstanceId/{appNameId}")
+    public ResponseEntity getApiDetailsWithAppId(@PathVariable Long appNameId) {
+        try {
+            List<ApiDetails> allApiDetailsWithAppInstanceId = apiService.getAllApiDetailsWithAppInstanceId(appNameId);
+            return new ResponseEntity(allApiDetailsWithAppInstanceId, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Exception in getApiDetailsWithAppName ", e.getMessage());
+        }
+        return new ResponseEntity(new ErrorDetails("API_SERVICE_ERROR", "Cannot get api Details with app Id"), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/getAllApiDetails/developerId/{developerId}")
+    public ResponseEntity getApiDetailsWithDeveloperId(@PathVariable Long developerId) {
+
+        try {
+            List<ApiDetails> allApiDetailsWithTeamMemberId = apiService.getAllApiDetailsWithTeamMemberId(developerId);
+            return new ResponseEntity(allApiDetailsWithTeamMemberId, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Exception in getApiDetailsWithDeveloperId ", e.getMessage());
+
+        }
+        return new ResponseEntity(new ErrorDetails("API_SERVICE_ERROR", "Cannot get api Details with developer Id"), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
